@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-           _targetFireBall = Object.Instantiate(fireBall,transform.position + transform.forward*5,Quaternion.identity);
+           _targetFireBall = Object.Instantiate(fireBall,transform.position + transform.forward*transform.localScale.z*0.5f,Quaternion.identity);
            _targetFireBall.transform.localScale = Vector3.one * 0.001f;
         }
         if (Input.GetKey(KeyCode.Space))
@@ -33,6 +33,8 @@ public class PlayerController : MonoBehaviour
             Scaler scaler = GetComponent<Scaler>();
             scaler.scale -= (float)(powerSpeed * Time.deltaTime);
             _targetFireBall.transform.localScale += Vector3.one * (float)(powerSpeed * Time.deltaTime);
+            _targetFireBall.transform.Translate(_targetFireBall.transform.forward*Time.deltaTime);
+            
 
         }
 
